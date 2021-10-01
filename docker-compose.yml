@@ -1,0 +1,26 @@
+version: '3'
+services:
+  app:  
+    build:
+      context: ./opencart
+      dockerfile: Dockerfile
+    restart: always
+    image: learningauto_webapp
+    container_name: learningauto_webapp
+    hostname: learningautomationapp
+    ports:
+      - "8080:80"
+  database:
+    image: mysql/mysql-server
+    hostname: learningautomationdb
+    container_name: learningauto_db
+    restart: always
+    depends_on: 
+      - app
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
