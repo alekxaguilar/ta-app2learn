@@ -19,15 +19,11 @@ RUN docker-php-ext-install zip pdo_mysql mysqli -j$(nproc) iconv && docker-php-e
 RUN usermod -u 1000 www-data
 
 WORKDIR /tmp
-
-RUN git clone --branch 3.0.3.8 --single-branch https://github.com/opencart/opencart.git 
+# tested version 3.0.3.8
+RUN git clone --branch master --single-branch https://github.com/opencart/opencart.git 
 
 # WORKDIR /tmp/opencart
-RUN  cp opencart/composer.* . \
- && curl -s http://getcomposer.org/installer | php \
- && php composer.phar update \
- && cp -R upload/ opencart/ \
- && mv opencart/upload/config-dist.php opencart/upload/config.php && mv opencart/upload/admin/config-dist.php opencart/upload/admin/config.php \
+RUN  mv opencart/upload/config-dist.php opencart/upload/config.php && mv opencart/upload/admin/config-dist.php opencart/upload/admin/config.php \
  && cp -R opencart/upload/* /var/www/html/
 
 WORKDIR /var/www/html

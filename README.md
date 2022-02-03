@@ -16,7 +16,7 @@ MYSQL_PASSWORD=<change_me>
 ### Docker build and run
 
 ```
-docker-compose up -d --build
+docker-compose up -d 
 ```
 Open following url and complete store setup.
 
