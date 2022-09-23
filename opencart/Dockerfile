@@ -20,7 +20,8 @@ RUN usermod -u 1000 www-data
 
 WORKDIR /tmp
 # tested version 3.0.3.8
-RUN git clone --branch master --single-branch https://github.com/opencart/opencart.git 
+# tested version 4.0.1.1
+RUN git clone --branch 4.0.1.1 --single-branch https://github.com/opencart/opencart.git 
 
 # WORKDIR /tmp/opencart
 RUN  mv opencart/upload/config-dist.php opencart/upload/config.php && mv opencart/upload/admin/config-dist.php opencart/upload/admin/config.php \
